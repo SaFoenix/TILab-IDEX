@@ -66,7 +66,7 @@
                     <td><?= $d['pseudo'];?></td>
                     <td><?= $d['ecoleU'];?></td>
                     <td>Campuslab</td>
-                    <td name="destinataire"><a href="chat.php?idchat=".$d['pseudo']>Démarrer la conversation</a></td>
+                    <td name="destinataire"><a href="chat.php?idchat=<?= $d['pseudo'] ?>" target="_blank" >Démarrer la conversation</a></td>
                   </tr>
                 <!-- <tbody>
                   <tr>
@@ -85,24 +85,6 @@
                     <td>july@example.com</td>
                   </tr>
                 </tbody> -->
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
               <!-- <option>
                 <?= $d['pseudo'] ?> taggle
