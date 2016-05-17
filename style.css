@@ -1,0 +1,241 @@
+.mybackground{
+	background-image: url(img/fond1.jpg);
+	background-attachment:fixed, scroll;
+    background-repeat:no-repeat;
+}
+
+
+
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+
+
+
+/* CSS Document */
+body {
+    font:12px arial;
+    color: #222;
+    text-align:center;
+    padding:35px; 
+    position: relative; 
+}
+  
+form, p, span {
+    margin:0;
+    padding:0; }
+  
+input { font:12px arial; }
+  
+a {
+    color:#0000FF;
+    text-decoration:none; }
+  
+    a:hover { text-decoration:underline; }
+  
+#wrapper, #loginform {
+    margin:0 auto;
+    padding-bottom:25px;
+    background:#EBF4FB;
+    width:504px;
+    border:1px solid #ACD8F0; }
+  
+#loginform { padding-top:18px; }
+  
+    #loginform p { margin: 5px; }
+  
+#chatbox {
+    text-align:left;
+    margin:0 auto;
+    margin-bottom:25px;
+    padding:10px;
+    background:#fff;
+    height:270px;
+    width:430px;
+    border:1px solid #ACD8F0;
+    overflow:auto; }
+  
+#usermsg {
+    width:395px;
+    border:1px solid #ACD8F0; }
+  
+#submit { width: 60px; }
+  
+.error { color: #ff0000; }
+  
+#menu { padding:12.5px 25px 12.5px 25px; }
+  
+.welcome { float:left; }
+  
+.logout { float:right; }
+  
+.msgln { margin:0 0 2px 0; }
+
+
+.democlass {
+    color: red;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+/*
+    <?php
+        $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
+
+        $requete = $bdd->query('SELECT * FROM article WHERE Id="1" ');
+
+        $resultat = $requete->fetch();
+
+        echo $resultat['Contenu'];
+    ?>
+
+    */
+
+.flex-center-vertically { /*https://css-tricks.com/centering-css-complete-guide/*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+/*  height: 400px;
+*/  padding-top: 100px
+}
+
+.panel-lorrain-1 {
+  border-color: #808080;
+}
+.panel-lorrain-1 > .panel-heading {
+  color: #fff;
+  background-color: #808080;
+  border-color: #808080;
+}
+.panel-lorrain-1 > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #337ab7;
+}
+.panel-lorrain-1 > .panel-heading .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.panel-lorrain-1 > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #337ab7;
+}
+
+.panel-lorrain-2 {
+  border-color: #808080;
+}
+.panel-lorrain-2 > .panel-heading {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+.panel-lorrain-2 > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #337ab7;
+}
+.panel-lorrain-2 > .panel-heading .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.panel-lorrain-2 > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #337ab7;
+}
+
+#googleMap_1 { /*http://www.w3schools.com/bootstrap/bootstrap_theme_band.asp*/
+    width: 100%; /* Span the entire width of the screen */
+    height: 380px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); /* Change the color of the map to black and white */
+}
+
+#googleMap_2 { /*http://www.w3schools.com/bootstrap/bootstrap_theme_band.asp*/
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+/*    filter: grayscale(100%);  Change the color of the map to black and white 
+*/}
+
+#googleMap_3 { /*http://www.w3schools.com/bootstrap/bootstrap_theme_band.asp*/
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+/*    filter: grayscale(100%);  Change the color of the map to black and white 
+*/}
+
+#googleMap_4 { /*http://www.w3schools.com/bootstrap/bootstrap_theme_band.asp*/
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+/*    filter: grayscale(100%);  Change the color of the map to black and white 
+*/}
+
+
+/**/
+#section1 {padding-top:50px;height:500px;color: #fff;}         /* background-color: #1E88E5; */
+#section2 {padding-top:50px;height:500px;color: #fff;}         /* background-color: #673ab7; */
+#section3 {padding-top:50px;height:500px;color: #fff;}         /* background-color: #ff9800; */
+#section4 {padding-top:50px;height:500px;color: #fff;}         /* background-color: #00bcd4; */
+#section5 {padding-top:50px;height:500px;color: #fff;}         /* background-color: #009688; */
+
+img#b_and_w:hover{
+    transition-duration: 3s;
+    filter: grayscale(100%); /* Change the color of the map to black and white */
+}
