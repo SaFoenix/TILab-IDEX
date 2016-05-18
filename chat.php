@@ -26,9 +26,8 @@
           $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
           if(isset($_SESSION['idU']) AND !empty($_SESSION['idU'])) {
              if(isset($_POST['envoi_message'])) {
-                if(isset($_GET['idchat'],$_POST['message']) AND !empty($_GET['idchat']) AND !empty($_POST['message'])) {
-                   $destinataire = htmlspecialchars($_GET['idchat']);
                 if(isset($_GET['pseudo'],$_POST['message']) AND !empty($_GET['pseudo']) AND !empty($_POST['message'])) {
+                   $destinataire = htmlspecialchars($_GET['pseudo']);
                    $message = htmlspecialchars($_POST['message']);
                    $id_destinataire = $bdd->prepare('SELECT idU FROM user WHERE pseudo = ?');
                    $id_destinataire->execute(array($destinataire));
