@@ -20,7 +20,7 @@
     <?php
         if(isset($_SESSION['idU']))
         {
-          if (!empty($_GET['idchat'])){
+          if (!empty($_GET['pseudo'])){
             include '/nav_connected.php';
                                                     //<!-- Insertion message dans le BDD -->
           $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
@@ -28,6 +28,7 @@
              if(isset($_POST['envoi_message'])) {
                 if(isset($_GET['idchat'],$_POST['message']) AND !empty($_GET['idchat']) AND !empty($_POST['message'])) {
                    $destinataire = htmlspecialchars($_GET['idchat']);
+                if(isset($_GET['pseudo'],$_POST['message']) AND !empty($_GET['pseudo']) AND !empty($_POST['message'])) {
                    $message = htmlspecialchars($_POST['message']);
                    $id_destinataire = $bdd->prepare('SELECT idU FROM user WHERE pseudo = ?');
                    $id_destinataire->execute(array($destinataire));
@@ -49,7 +50,7 @@
       ?>
                                                       <!-- FIN insertion -->
                                                     <!-- Début du contenu de la page -->
-<div class="container">
+<div class="container-fluid">
    <div>
   <!--    <form method="post" action="">
         <div class="row">
@@ -95,10 +96,9 @@
 <div id="message_test">
   <?php 
         $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
-        $id_connect = $_SESSION['idU'];
-        $pseudo_destinataire = $_GET['idchat'];
         // $id_destinataire = $bdd->query('SELECT idU FROM user WHERE pseudo = $pseudo_destinataire');    ne fonctionne apparement pas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        $msg = $bdd->query("SELECT * FROM discuter WHERE (((User_idU='$id_connect') OR (User_idU1='$id_connect')) AND ((User_idU='$id_connect') OR (User_idU1='$id_connect'))) ORDER BY idD DESC");
+        $msg = $bdd->prepare("SELECT * FROM discuter WHERE (((User_idU= ? ) OR (User_idU1= ? )) AND ((User_idU= ? ) OR (User_idU1= ? ))) ORDER BY idD DESC");
+        $msg->execute(array($_SESSION['idU'], $_SESSION['idU'], $_GET['id'], $_GET['id']));
         while($msg2 = $msg->fetch())
         {
           ?>
@@ -107,7 +107,7 @@
         if($_SESSION['idU'] !== $msg2['User_idU']) {
         ?>
           <li class="left clearfix"><span class="chat-img pull-left">
-            <img src="http://placehold.it/50/55C1E7/fff&amp;text=Other" alt="User Avatar" class="img-circle">
+            <img src="http://placehold.it/50/55C1E7/fff&amp;text=<?= $_GET['pseudo']?>" alt="User Avatar" class="img-circle">
             </span>
                 <div class="chat-body clearfix">
                     <div class="header">
@@ -151,7 +151,7 @@
                   <div class="panel-footer">
                     <textarea type="text" class="form-control" name="message" placeholder="Veuillez écrire votre message <?php echo $_SESSION['pseudo']?>"></textarea>
                     <div class="form-group">
-  <!--                     <label>Envoyer un message à :</label> <?= $_GET['idchat']; ?>
+  <!--                     <label>Envoyer un message à :</label> <?= $_GET['pseudo']; ?>
                            <select name="destinataire">
                       <?php while($d = $destinataires->fetch()) { ?>
                         <option> <?= $d['pseudo'] ?> </option>
@@ -159,7 +159,7 @@
                     </select> -->
                     </div>
                     <span class="input-group-btn">
-                    <input class="btn btn-success btn-block" type="submit" value="Envoyer le message à <?= $_GET['idchat']; ?>" name="envoi_message" />
+                    <input class="btn btn-success btn-block" type="submit" value="Envoyer le message à <?= $_GET['pseudo']; ?>" name="envoi_message" />
                     </span>
                     <br>
                     <?php if(isset($error)) {
@@ -184,12 +184,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
                                                     <!-- fin inclusion js -->
- <script>
-  setInterval('load_msg()', 500);
+<script>
+  // setInterval('load_msg()', 500);
   function load_msg()
   {
-    $('#message_test').load('load_msg.php');
+    $('#message_test').load(chat.php + '#message_test');
   }
+
+  $.get('/api/message_test', function(data) {
+  $('#message_test').html(data);
+});
 </script>
 <script type="text/javascript">
                     function afficher() {
@@ -204,6 +208,8 @@
                     window.onload=function() {
                       afficher();
                       setInterval(afficher,1000);
+                      // load_msg();
+                      // setInterval(load_msg,1000);
                     }
 </script> 
 <!-- entre php
@@ -216,7 +222,6 @@
       else {
         include '/nav_connected.php';
     ?>
-      
       Vous devez choisir votre destinataire avant de pouvoir discuter avec. Redirection en cours
       <?php
       header("refresh:5;url=pre_chat.php");
@@ -224,7 +229,6 @@
   }
     else
     {
-
            include '/nav_non_connected.php';
 ?>
 
