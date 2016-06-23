@@ -41,80 +41,76 @@
           <h1> Votre profil<br> <small> Vous pouvez changer vos informations personnelles</small></h1>
         </div>
       </div>
-<!--  <form method="POST" action=""> -->
+<!--  <form method="POST" action="">
         <br>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-offset-2 col-md-3">
             <form method="POST" action="">
               <div class="form-group">
                 <label for="newpseudo">Pseudo</label>
-                <input type="text" class="form-control" id="newpseudo" placeholder="Votre pseudo" name="pseudo" value="<?php echo $resuserinfo['pseudo']; ?>" disabled>
+                <input type="text" class="form-control" id="newpseudo" placeholder="Votre pseudo" name="pseudo" value="?= $resuserinfo['pseudo']; ?>" enabled>
               </div>
             </form>
           </div>
           <div class="col-md-offset-0 col-md-2">
-<br>            <button class="btn btn-primary btn-block" onclick="mPseudo()">Modifier pseudo &raquo;</button>
+<br>            <button class="btn btn-primary btn-block" onclick="mPseudo()">Modifier pseudo &rpargt;</button>
           </div> 
+        </div> -->
+
+        <div class="row">
+          <form method="POST" action="">
+            <div class="col-md-offset-2 col-md-3">
+              <div class="form-group">
+                <label for="newmail">Email</label>
+                <input type="email" class="form-control" id="newmail" placeholder="Votre Email" name="newmail" value="<?php echo $resuserinfo['mail']; ?>" enabled>
+              </div>
+            </div>
+
+            <div class="col-md-offset-0 col-md-3">
+
+              <div class="form-group">
+                <label for="newmail2">Vérification Email</label>
+                <input type="text" class="form-control" id="newmail2" placeholder="Confirmation Email" name="newmail2" value="<?php echo $resuserinfo['mail']; ?>" enabled>
+              </div>
+            </div>
+
+            <div class="col-md-offset-0 col-md-2">
+  <br>        <input type="submit" class="btn btn-primary btn-block" name="formmail" value="Modifier mail &rpargt;">
+            </div>
+
+          </form>
         </div>
 
         <div class="row">
-          <div class="col-md-offset-2 col-md-3">
-            <form method="POST" action="">
+          <form method="POST" action="">
+            <div class="col-md-offset-2 col-md-3">
 
-            <div class="form-group">
-              <label for="newmail">Email</label>
-              <input type="email" class="form-control" id="newmail" placeholder="Votre Email" name="newmail" value="<?php echo $resuserinfo['mail']; ?>" disabled>
+              <div class="form-group">
+                <label for="newmdp">Mot de passe</label>
+                <input type="password" class="form-control" id="newmdp" name="newmdp" placeholder="Mot de passe" enabled>
+              </div>
             </div>
-            </form>
-          </div>
-
-          <div class="col-md-offset-0 col-md-2">
-<br>            <button class="btn btn-primary btn-block" onclick="mMail()">Modifier mail &raquo;</button>
-          </div> 
-
-          <div class="col-md-offset-0 col-md-3">
-            <form method="POST" action="">
-
-            <div class="form-group">
-              <label for="newmail2">Vérification Email</label>
-              <input type="text" class="form-control" id="newmail2" placeholder="Confirmation Email" name="newmail2" value="<?php echo $resuserinfo['mail']; ?>" disabled>
+            
+            <div class="col-md-offset-0 col-md-3">
+              <div class="form-group">
+                <label for="newmdp2">Vérification mot de passe</label>
+                <input type="password" class="form-control" id="newmdp2" name="newmdp2" placeholder="Vérification mot de passe" enabled>
+              </div>
             </div>
-            </form>
-          </div>
+
+            <div class="col-md-offset-0 col-md-2">
+  <br>        <input type="submit" class="btn btn-primary btn-block" name="formmdp" value="Modifier mdp &rpargt;">
+            </div>
+
+          </form>
         </div>
 
-        <div class="row">
-          <div class="col-md-offset-2 col-md-3">
-            <form method="POST" action="">
-
-            <div class="form-group">
-              <label for="newmdp">Mot de passe</label>
-              <input type="password" class="form-control" id="newmdp" name="newmdp" placeholder="Mot de passe" disabled>
-            </div>
-            </form>
-          </div>
-          
-          <div class="col-md-offset-0 col-md-2">
-<br>            <button class="btn btn-primary btn-block" onclick="mMdp()">Modifier mdp &raquo;</button>
-          </div>
-
-          <div class="col-md-offset-0 col-md-3">
-            <form method="POST" action="">
-
-            <div class="form-group">
-              <label for="newmdp2">Vérification mot de passe</label>
-              <input type="password" class="form-control" id="newmdp2" name="newmdp2" placeholder="Vérification mot de passe" disabled>
-            </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="row">
+<!--         <div class="row">
           <div class="col-md-offset-4 col-md-4">
-            <input id="TESTUN" type="submit" class="btn btn-primary btn-block" name="forminscription" value="Envoyer mes informations &raquo;">
+            <input id="TESTUN" type="submit" class="btn btn-primary btn-block" name="forminscription" value="Modifier mdp &rpargt;">
           </div>
         </div>
-
+ -->
 
 
       <!-- </form> -->
@@ -123,40 +119,54 @@
 
     </div>
   </div>
-        <?php
+
+  <?php
+    if(isset($_POST['formmail'])) {
+      $mail = htmlspecialchars($_POST['newmail']);
+      $mail2 = htmlspecialchars($_POST['newmail2']);
+        if( !empty($_POST['newmail']) AND !empty($_POST['newmail2'])) {
+          if($mail == $mail2) {
+            if(filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+              $reqmail = $bdd->prepare("SELECT * FROM user WHERE mail = ?");
+              $reqmail->execute(array($mail));
+              $mailexist = $reqmail->rowCount();
+              if($mailexist == 0) {
+                $updatemail = $bdd->prepare("UPDATE user SET mail = ? WHERE idU = ?");
+                $updatemail->execute(array($mail, $_SESSION['idU']));
+                $error = "Votre mail a bien été mis à jour !";
+              
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+      if(isset($_POST['formmdp'])){
+        $newmdp = sha1($_POST['newmdp']);
+        $newmdp2 = sha1($_POST['newmdp2']);
+          if( !empty($_POST['newmdp']) AND !empty($_POST['newmdp2'])) {
+            if($newmdp == $newmdp2) {
+                $updatemdp = $bdd->prepare("UPDATE user SET mdp = ? WHERE idU = ?");
+                $updatemdp->execute(array($newmdp, $_SESSION['idU']));
+                $error = "Votre mot de passe a bien été mis à jour !";
+          }
+
+        }
+
+      }
+                   if(isset($error)) {
+                      echo '<span style="color:green">' .$error.'</span>';
+                      }
+                    
     }
-
     else
-    {
-      ?>
-  <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.php">Accueil</a>
-      </div>
-      <ul class="nav navbar-nav">
-      <li><a href="forum_categorie.php">Forum</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-           aria-haspopup="true" aria-expanded="false">Nos Fablabs<span class="caret">
-           </span></a>
-          <ul class="dropdown-menu">
-            <li><a href="http://www.ensiacet.fr/fr/index.html" target="_blank">ENSIACET</a></li>
-            <li><a href="http://www.mines-albi.fr/" target="_blank">Mines d'Albi</a></li>
-            <li><a href="http://www.insa-toulouse.fr/fr/index.html" target="_blank">INSA Toulouse</a></li>
-            <li><a href="http://www.univ-tlse3.fr/" target="_blank">Université Toulouse III</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-
-        <li><a href="inscription.php">Inscription</a></li>
-        <li><a href="connexion.php">Connexion</a></li>
-      </ul>
-    </div>
-  </div>
+      {
+    include '/nav_non_connected.php';
+  ?>
   <div class="container">
     <div class="well">
       <div class="row">
@@ -168,41 +178,21 @@
       </div>
 <?php
 header("refresh:5;url=connexion.php");
-
         }
 ?>
-
-                
-                
 <!-- partie connexion PHP -->
-
-
-
-
-
 <!-- fin partie connexion PHP -->
-
-
-
-
     <!-- Fin du contenu de la page -->
-
-
-
-
-
 <!-- Inclusion js -->
 
     <!-- le premier est sûrement inutile -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 <!-- fin inclusion js -->
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="well">
 
 
@@ -263,9 +253,9 @@ function mMdp() {
 
 
 
+  </div>
 </div>
-</div>
-
+ -->
 
 </body>
 </html>

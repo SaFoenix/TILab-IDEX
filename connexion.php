@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
                                                 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Page de connexion</title>
+    <title>Connexion au site</title>
                                                 <!-- Bootstrap -->
     <link rel="stylesheet" href="style.css">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
       <div class="well">
         <div class="row">
           <div class="col-md-offset-2 col-md-8">
-            <h1> Connexion <br/> <small> Merci de rentrer vos identifiants</small></h1>
+            <h1>Connexion<br><small> Merci de rentrer vos identifiants</small></h1>
           </div>
         </div>
 
@@ -52,7 +52,7 @@
           <div class="col-md-offset-4 col-md-4">
             <div class="form-group">
               <label for="pseudoconnect">Pseudo</label>
-              <input type="text" class="form-control" id="pseudoconnect" placeholder="Votre pseudo" name="pseudoconnect" value="<?php if(isset($pseudo)) { echo $pseudo; } ?>">
+              <input type="text" class="form-control" id="pseudoconnect" placeholder="Votre pseudo" name="pseudoconnect" value="<?php if(isset($pseudo)) {echo $pseudo;} ?>">
             </div>
           </div>
         </div>
@@ -69,8 +69,8 @@
         <br>
         <div class="row">
           <div class="col-md-offset-4 col-md-4">
-            <input class="btn btn-success btn-block" type="submit" name="formconnect" value="Se connecter! &raquo;" />
-            <input class="btn btn-primary btn-block" type="submit" name="forminscription" value="Pas encore de compte? &raquo;" />
+            <input class="btn btn-success btn-block" type="submit" name="formconnect" value="Se connecter! &rpargt;" />
+            <input class="btn btn-primary btn-block" type="submit" name="forminscription" value="Pas encore de compte? &rpargt;" />
           </div>  
         </div>
         <br>     
