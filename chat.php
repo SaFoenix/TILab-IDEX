@@ -22,6 +22,8 @@
         {
           if (!empty($_GET['pseudo'])){
             include '/nav_connected.php';
+            $_SESSION['id2'] = $_GET['id'];
+
                                                     //<!-- Insertion message dans le BDD -->
           $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
           if(isset($_SESSION['idU']) AND !empty($_SESSION['idU'])) {
@@ -97,7 +99,7 @@
         $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
         // $id_destinataire = $bdd->query('SELECT idU FROM user WHERE pseudo = $pseudo_destinataire');    ne fonctionne apparement pas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         $msg = $bdd->prepare("SELECT * FROM discuter WHERE (((User_idU= ? ) OR (User_idU1= ? )) AND ((User_idU= ? ) OR (User_idU1= ? ))) ORDER BY idD DESC");
-        $msg->execute(array($_SESSION['idU'], $_SESSION['idU'], $_GET['id'], $_GET['id']));
+        $msg->execute(array($_SESSION['idU'], $_SESSION['idU'], $_SESSION['id2'], $_SESSION['id2']));
         while($msg2 = $msg->fetch())
         {
           ?>
@@ -158,7 +160,7 @@
                     </select> -->
                     </div>
                     <span class="input-group-btn">
-                    <input class="btn btn-success btn-block" type="submit" value="Envoyer le message à <?= $_GET['pseudo']; ?>" name="envoi_message" />
+                    <input class="btn btn-success btn-block" name="envoi_message" type="submit" value="Envoyer le message à <?= $_GET['pseudo'];?>" />
                     </span>
                     <br>
                     <?php if(isset($error)) {
@@ -185,10 +187,10 @@
                                                     <!-- fin inclusion js -->
 <script>
   // setInterval('load_msg()', 500);
-  function load_msg()
-  {
-    $('#message_test').load(chat.php + '#message_test');
-  }
+   function load_msg()
+   {
+     $('#message_test').load('load_msg.php'); //chat.php #message_test
+   }
 
   $.get('/api/message_test', function(data) {
   $('#message_test').html(data);

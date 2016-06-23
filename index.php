@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
                                                 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bienvenue sur le site des Fablabs de Toulouse</title>
+    <title>Bienvenue sur le site de la banane de la parole</title>
                                                 <!-- Bootstrap -->
     <link rel="stylesheet" href="style.css">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,18 +42,18 @@
 
       <div class="row featurette">
         <div class="col-md-3 test_img">
-          <a href="#section1"><img id="b_and_w" class="featurette-image img-responsive center-block" src="/img/ensiacet.jpg" alt="Photo d'un bâtiment de l'Ensiacet"></a>
+          <a href="#section1"><img class="featurette-image img-responsive center-block" src="/img/logo_ensiacet.jpg" alt="Photo d'un bâtiment de l'Ensiacet"></a>
         </div>
 
         <div class="col-md-3 test_img">
-          <a href="#section2"><img id="b_and_w" class="featurette-image img-responsive center-block" src="/img/mines_albi_2.jpg" alt="Photo d'un bâtiment des mines d'Albi"></a>
+          <a href="#section2"><img class="featurette-image img-responsive center-block" src="/img/logo_mines_albi.png" alt="Photo d'un bâtiment des mines d'Albi"></a> <!-- id="b_and_w" -->
         </div>
         <div class="col-md-3 test_img">
-          <a href="#section3"><img id="b_and_w" class="featurette-image img-responsive center-block" src="/img/insa_2.jpg" alt="Photo d'un bâtiment de l'INSA"></a>
+          <a href="#section3"><img class="featurette-image img-responsive center-block" src="/img/fabric_INSA.png" alt="Photo d'un bâtiment de l'INSA"></a>
         </div>
 
         <div class="col-md-3 test_img">
-          <a href="#section4"><img id="b_and_w" class="featurette-image img-responsive center-block" src="/img/UPS_2.jpg" alt="Photo d'un bâtiment de l'Université Toulouse III Paul Sabatier"></a>
+          <a href="#section4"><img class="featurette-image img-responsive center-block" src="/img/logo_ups.jpg" alt="Photo d'un bâtiment de l'Université Toulouse III Paul Sabatier"></a>
         </div>
       </div>
 

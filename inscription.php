@@ -84,9 +84,10 @@
 <!--             <input type="text" class="form-control" id="ecoleU" placeholder="Votre établissement" name="ecoleU" value="<?php if(isset($ecoleU)) { echo $ecoleU; } ?>">
 -->          <select class="form-control" name="ecoleU">
               <option value="Ensiacet" selected>Ensiacet</option> 
-              <option value="Mines d'Albi">Mines d'Albi</option>
+              <option value="MinesAlbi">Mines d'Albi</option>
               <option value="INSA">INSA</option>
               <option value="UPS">Université toulouse III Paul Sabatier</option>
+              <option value="Organisme">Organisme</option>
             </select>
           </div>
         </div>
@@ -97,9 +98,10 @@
 <!--             <input type="text" class="form-control" id="statut" placeholder="Votre statut" name="statut" value="<?php if(isset($statut)) { echo $statut; } ?>">
  -->
               <select class="form-control" name="statut">
-                <option value="étudiant" selected>étudiant</option> 
-                <option value="professeur">professeur</option>
-                <option value="administrateur">administrateur</option>
+                <option value="Étudiant" selected>Étudiant</option>
+                <option value="Personnel">Personnel</option>
+                <option value="Extérieur">Extérieur</option>
+                <option value="Administrateur">(Administrateur)</option>
               </select>
           </div>
         </div>
@@ -140,7 +142,7 @@
       <br/>
       <div class="row">
         <div class="col-md-offset-4 col-md-4">
-          <input id="TESTUN" type="submit" class="btn btn-primary btn-block" name="forminscription" value="Envoyer mes informations &raquo;">
+          <input id="TESTUN" type="submit" class="btn btn-primary btn-block" name="forminscription" value="Envoyer mes informations &rpargt;">
         </div>
       </div>
       <br>
@@ -276,7 +278,6 @@
             </div>
           </form>
          </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                                 <!-- Fin du contenu de la page -->
                                                 <!-- Inclusion js -->
                                                 <!-- le premier est sûrement inutile -->

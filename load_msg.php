@@ -1,12 +1,8 @@
- <?php
- session_start();
+  <?php 
         $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
-        $id_connect = $_SESSION['idU'];
-        $msg = $bdd->query("SELECT * FROM discuter WHERE (((User_idU='$id_connect') OR (User_idU1='$id_connect')) AND ((User_idU='$id_connect') OR (User_idU1='$id_connect'))) ORDER BY dateHeure DESC");
-        setlocale(LC_TIME, 'fr');
-        // $date = $bdd->query('SELECT dateHeure from');
-        // $req_pseudo = $bdd->prepare('SELECT pseudo FROM user WHERE idU = ?');
-        // $req_pseudo->execute(array($msg['User_idU']));
+        // $id_destinataire = $bdd->query('SELECT idU FROM user WHERE pseudo = $pseudo_destinataire');    ne fonctionne apparement pas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $msg = $bdd->prepare("SELECT * FROM discuter WHERE (((User_idU= ? ) OR (User_idU1= ? )) AND ((User_idU= ? ) OR (User_idU1= ? ))) ORDER BY idD DESC");
+        $msg->execute(array($_SESSION['idU'], $_SESSION['idU'], $_SESSION['id2'], $_SESSION['id2']));
         while($msg2 = $msg->fetch())
         {
           ?>
@@ -15,7 +11,7 @@
         if($_SESSION['idU'] !== $msg2['User_idU']) {
         ?>
           <li class="left clearfix"><span class="chat-img pull-left">
-            <img src="http://placehold.it/50/55C1E7/fff&amp;text=Other" alt="User Avatar" class="img-circle">
+            <img src="http://placehold.it/50/55C1E7/fff&amp;text=<?= $_GET['pseudo']?>" alt="User Avatar" class="img-circle">
             </span>
                 <div class="chat-body clearfix">
                     <div class="header">
@@ -38,17 +34,17 @@
             </span>
             <div class="chat-body clearfix">
                 <div class="header">
-<!--                     <strong class="primary-font"><?php echo $msg2['pseudo']; ?></strong>
- -->                    <small class=" text-muted pull-left"><span class="glyphicon glyphicon-time" id="nolocale"> <?= $msg2['dateHeure'] ?></span></small>
+                                                    <!-- <strong class="primary-font">Message de : <?php echo $msg2['User_idU']; ?> --> </strong>
+                    <small class=" text-muted pull-left"><span class="glyphicon glyphicon-time" id="nolocale"> <?= $msg2['dateHeure'] ?></span></small>
                 </div>
                 <p>
                     <?php
-                        echo $msg2['msg'];
+                      echo $msg2['msg'];
                     ?>
                 </p>
             </div>
         </li>
-<?php
-        }
-        }
-      ?>
+    <?php
+            }
+            }
+          ?>

@@ -26,69 +26,50 @@
       include '/nav_connected.php';
 
       $bdd = new PDO('mysql:host=127.0.0.1;dbname=ti_labs', 'root', '');
-      $destinataires = $bdd->prepare("SELECT * FROM user WHERE pseudo != ? ORDER BY pseudo");
-      $destinataires->execute(array($_SESSION['pseudo']));
-      if(isset($_POST['formdestinataire'])) {
-        $pseudo_destinataire = htmlspecialchars($_POST['destinataire']);
-        header("location: chat.php?idchat=".$pseudo_destinataire);
-  }
+      $destinataire = $bdd->prepare("SELECT * FROM user WHERE pseudo != ? ORDER BY pseudo");
+      $destinataire->execute(array($_SESSION['pseudo']));
+      // if(isset($_POST['formdestinataire'])) {
+      //   $pseudo_destinataire = htmlspecialchars($_POST['destinataire']);
+      //   header("location: chat.php?idchat=".$pseudo_destinataire);
+  // }
   ?>
-<div class="container">
+<div class="container-fluid">
   <div>
-    <form method="POST" action="">
-      <div class="row">
+<!--     <form method="POST" action="">
+ -->      <div class="row">
         <div class="col-md-offset-0 col-md-0">
 <!--           <select name="destinataire">
  -->            
           <div class="row">
             <div class="panel panel-lorrain-2">
-              <div class="panel-heading" align="left">
-              Machines
-            </div>
-            <p>Membres avec qui vous pouvez discuter :</p>            
+<!--              <div class="panel-heading" align="left">
+              Membres
+            </div> -->
+            <p>Membres avec qui vous pouvez discuter :</p>
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th>Pseudo</th>
-                    <th>Etblissement</th>
+                    <th>Etablissement</th>
                     <th>Statut</th>
-                    <th>Discuter</th>
+                    <th>Compétences</th>
                   </tr>
                 </thead>
                 <tbody>
-
                 <?php 
-                  while($d = $destinataires->fetch()) { ?>
-              
+                  while($d = $destinataire->fetch()) { ?>
 <!--             <h2>Striped Rows</h2>
- -->              
+-->              
                   <tr>
-                    <td><?= $d['pseudo'];?></td>
+                    <td><a href="chat.php?pseudo=<?= $d['pseudo']?>&id=<?= $d['idU']?>" target="_blank"><?= $d['pseudo'];?></a></td>
                     <td><?= $d['ecoleU'];?></td>
-                    <td>Campuslab</td>
-                    <td name="destinataire"><a href="chat.php?idchat=<?= $d['pseudo'] ?>" target="_blank" >Démarrer la conversation</a></td>
-                  </tr>
-                <!-- <tbody>
-                  <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                  </tr>
-                  <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                  </tr>
-                </tbody> -->
+                    <td><?= $d['statut'];?></td>
+                    <td><?= $d['statut'];?></td>
 
-              <!-- <option>
-                <?= $d['pseudo'] ?> taggle
-              </option> -->
+                  </tr>
+<!-- <option>
+                  <?= $d['pseudo'] ?> taggle
+</option> -->
             <?php } ?>
 
                 </tbody>
@@ -98,13 +79,13 @@
 <!--           </select>
  -->        </div>  
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-offset-4 col-md-4">
           <input class="btn btn-success btn-block" type="submit" name="formdestinataire" value="Discuter !" />
         </div>
-      </div>
-    </form>
-  </div>
+      </div> -->
+<!--     </form>
+ -->  </div>
 </div>
 
 <?php

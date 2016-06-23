@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bienvenue sur le site des Fablabs de Toulouse</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<<body class="mybackground">
+	<?
+		$bdd = new PDO('mysql:host=127.0.0.1;dbname=membre', 'root', '');
+
+		$requete = $bdd->query("SELECT * FROM membre");
+
+		$resultat = $requete->fetch();
+
+		echo $resultat;
+	?>
+	<div class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Accueil</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="#">Nos fablabs</a></li>
+	      <li><a href="#">Inscription</a></li>
+	      <li><a href="#">Connexion</a></li>
+	      <li><a href="#">Références</a></li>
+	      <li><a href="#">Bibliographie</a></li>
+	    </ul>
+	  </div>
+	</div>
+	<div class="container">
+		<div class="well">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8">
+					<h1> Inscription <br/> <small> Merci de renseigner vos informations </small></h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-offset-2 col-md-3">
+					<div class="form-group">
+						<label for="Pseudo">Pseudo</label>
+						<input type="text" class="form-control" id="pseudo" placeholder="Pseudo">
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-offset-2 col-md-3">
+					<div class="form-group">
+						<label for="mail">Email</label>
+						<input type="text" class="form-control" id="email" placeholder="Email">
+					</div>
+				</div>
+			
+				<div class="col-md-offset-1 col-md-3">
+					<div class="form-group">
+						<label for="Vmail">Vérification Email</label>
+						<input type="text" class="form-control" id="email" placeholder="Email">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-offset-2 col-md-3">
+					<div class="form-group">
+						<label for="Password">Mot de passe</label>
+						<input type="password" class="form-control" id="password" placeholder="Mot de passe">
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-3">
+					<div class="form-group">
+						<label for="Vpassword">Vérification mot de passe</label>
+						<input type="password" class="form-control" id="vpassword" placeholder="Vérification mot de passe">
+					</div>
+				</div>
+			</div>
+
+			<br/>
+			<div class="row">
+				<div class="col-md-offset-5 col-md-1">
+					<button type="button" class="btn btn-primary">Envoyer mes informations</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
